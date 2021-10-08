@@ -1,0 +1,27 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "resourceBaseName": {
+      "value": "botwithsqldev"
+    },
+    "bot_aadClientId": {
+      "value": "{{FX_RESOURCE_BOT__BOTID}}"
+    },
+    "bot_aadClientSecret": {
+      "value": "{{FX_RESOURCE_BOT__BOTPASSWORD}}"
+    },
+    "m365ClientId": {
+      "value": "{{FX_RESOURCE_AAD_APP_FOR_TEAMS__CLIENTID}}"
+    },
+    "m365ClientSecret": {
+      "value": "{{FX_RESOURCE_AAD_APP_FOR_TEAMS__CLIENTSECRET}}"
+    },
+    "m365TenantId": {
+      "value": "{{FX_RESOURCE_AAD_APP_FOR_TEAMS__TENANTID}}"
+    },
+    "m365OauthAuthorityHost": {
+      "value": "{{FX_RESOURCE_AAD_APP_FOR_TEAMS__OAUTHHOST}}"
+    }
+  }
+}
