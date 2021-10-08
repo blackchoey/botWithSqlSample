@@ -13,12 +13,14 @@
     "watch": "nodemon ./index.js"
   },
   "dependencies": {
+    "@microsoft/teamsfx": "^0.2.7",
     "adaptive-expressions": "^4.14.1",
     "adaptivecards-templating": "^2.1.0",
     "botbuilder": "~4.14.0",
     "botbuilder-dialogs": "~4.14.0",
     "isomorphic-fetch": "^3.0.0",
-    "restify": "~8.5.1"
+    "restify": "~8.5.1",
+    "tedious": "^13.1.0"
   },
   "devDependencies": {
     "ngrok": "^3.4.0",
