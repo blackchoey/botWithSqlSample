@@ -5,6 +5,7 @@ param botServerfarmsName string
 param botWebAppSKU string = 'F1'
 param botServiceSKU string = 'F1'
 param botWebAppName string
+param identityName string
 
 var botWebAppHostname = botWebApp.properties.hostNames[0]
 var botEndpoint = 'https://${botWebAppHostname}'
@@ -46,6 +47,12 @@ resource botWebApp 'Microsoft.Web/sites@2021-01-01' = {
       alwaysOn: false
       http20Enabled: false
       numberOfWorkers: 1
+    }
+  }
+  identity: {
+    type: 'UserAssigned'
+    userAssignedIdentities: {
+      '${identityName}': {}
     }
   }
 }

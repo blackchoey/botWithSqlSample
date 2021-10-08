@@ -14,8 +14,31 @@ param m365ClientId string
 param m365ClientSecret string
 param m365TenantId string
 param m365OauthAuthorityHost string
+param azureSql_admin string
+@secure()
+param azureSql_adminPassword string
+param azureSql_serverName string = '${resourceBaseName}-sql-server'
+param azureSql_databaseName string = '${resourceBaseName}-database'
+param identity_managedIdentityName string = '${resourceBaseName}-managedIdentity'
 
 var m365ApplicationIdUri = 'api://botid-${bot_aadClientId}'
+
+module userAssignedIdentityProvision './modules/userAssignedIdentityProvision.bicep' = {
+  name: 'userAssignedIdentityProvision'
+  params: {
+    managedIdentityName: identity_managedIdentityName
+  }
+}
+
+module azureSqlProvision './modules/azureSqlProvision.bicep' = {
+  name: 'azureSqlProvision'
+  params: {
+    sqlServerName: azureSql_serverName
+    sqlDatabaseName: azureSql_databaseName
+    administratorLogin: azureSql_admin
+    administratorLoginPassword: azureSql_adminPassword
+  }
+}
 
 module botProvision './modules/botProvision.bicep' = {
   name: 'botProvision'
@@ -27,6 +50,7 @@ module botProvision './modules/botProvision.bicep' = {
     botServiceSKU: bot_serviceSKU
     botWebAppName: bot_sitesName
     botWebAppSKU: bot_webAppSKU
+    identityName: userAssignedIdentityProvision.outputs.identityName
   }
 }
 module botConfiguration './modules/botConfiguration.bicep' = {
@@ -46,6 +70,9 @@ module botConfiguration './modules/botConfiguration.bicep' = {
     m365ClientSecret: m365ClientSecret
     m365TenantId: m365TenantId
     m365OauthAuthorityHost: m365OauthAuthorityHost
+    sqlDatabaseName: azureSqlProvision.outputs.databaseName
+    sqlEndpoint: azureSqlProvision.outputs.sqlEndpoint
+    identityId: userAssignedIdentityProvision.outputs.identityId
   }
 }
 

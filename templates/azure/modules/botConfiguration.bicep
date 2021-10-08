@@ -11,6 +11,9 @@ param m365ClientSecret string
 param m365TenantId string
 param m365OauthAuthorityHost string
 param m365ApplicationIdUri string
+param sqlDatabaseName string
+param sqlEndpoint string
+param identityId string
 
 var initiateLoginEndpoint = uri(botEndpoint, authLoginUriSuffix)
 
@@ -35,5 +38,8 @@ resource botWebAppSettings 'Microsoft.Web/sites/config@2021-01-01' = {
       M365_TENANT_ID: m365TenantId
       SCM_DO_BUILD_DURING_DEPLOYMENT: 'true'
       WEBSITE_NODE_DEFAULT_VERSION: '12.13.0'
+      SQL_DATABASE_NAME: sqlDatabaseName
+      SQL_ENDPOINT: sqlEndpoint
+      IDENTITY_ID: identityId
      }
 }

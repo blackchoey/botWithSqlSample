@@ -22,6 +22,12 @@
     },
     "m365OauthAuthorityHost": {
       "value": "{{FX_RESOURCE_AAD_APP_FOR_TEAMS__OAUTHHOST}}"
+    },
+    "azureSql_admin": {
+      "value": ""
+    },
+    "azureSql_adminPassword": {
+      "value": ""
     }
   }
 }
