@@ -65,6 +65,7 @@ class TeamsBot extends TeamsActivityHandler {
           }
           resolve(connection);
         });
+        connection.connect();
       });
     }
     
