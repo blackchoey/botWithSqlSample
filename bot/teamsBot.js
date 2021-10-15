@@ -56,6 +56,16 @@ class TeamsBot extends TeamsActivityHandler {
     async function getSQLConnection() {
       const sqlConnectConfig = new DefaultTediousConnectionConfiguration();
       const config = await sqlConnectConfig.getConfig();
+      // Use following config if you want to use system assigned identity from web app
+      // const config = {
+      //   server: process.env["SQL_ENDPOINT"],
+      //   options: {
+      //     database: process.env["SQL_DATABASE_NAME"]
+      //   },
+      //   authentication: { 
+      //     type: "azure-active-directory-msi-app-service"
+      //   }
+      // }
       const connection = new Connection(config);
       return new Promise((resolve, reject) => {
         connection.on("connect", (error) => {
