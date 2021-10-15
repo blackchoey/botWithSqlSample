@@ -57,6 +57,12 @@
             "presentation": {
                 "group": "all",
                 "hidden": true
+            },
+            "env": {
+                "SQL_ENDPOINT":"",
+                "SQL_DATABASE_NAME":"",
+                "SQL_USER_NAME":"",
+                "SQL_PASSWORD":""
             }
         }
     ],
