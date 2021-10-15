@@ -38,7 +38,7 @@ class TeamsBot extends TeamsActivityHandler {
           const connection = await getSQLConnection();
           const query = "select system_user as u, sysdatetime() as t";
           const result = await execQuery(query, connection);
-          await context.sendActivities(result[0][0]);
+          await context.sendActivity(`Your sql login: ${result[0][0]}`);
           break;
         }
         /**
